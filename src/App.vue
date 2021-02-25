@@ -21,6 +21,7 @@ export default class App extends Vue {}
 body
   margin: 0;
   padding: 0;
+  box-sizing : border-box;
 #app
   min-height 100vh
   background-image linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)
