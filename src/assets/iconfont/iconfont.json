@@ -1,0 +1,23 @@
+{
+  "id": "2390002",
+  "name": "vue01",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7761519",
+      "name": "删 除 ",
+      "font_class": "shanchu",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "9982164",
+      "name": "修改",
+      "font_class": "xiugai",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    }
+  ]
+}
