@@ -1,27 +1,63 @@
 <template>
   <div class="container">
     <!-- title -->
-    <h3>伊朗导弹袭击美</h3>
+    <h3>{{this.customData.title}}</h3>
     <!-- 修改和删除的功能图标 -->
     <section>
-      <i class="iconfont icon-xiugai"></i>
-      <i class="iconfont icon-shanchu"></i>
+      <i class="iconfont icon-xiugai" title="修改"></i>
+      <i class="iconfont icon-shanchu" @click="delHandle" title="删除"></i>
     </section>
     <!-- 文章的信息 -->
-    <p>2020-01-20 18:32 分类:<span>生活</span></p>
+    <p>{{this.customData.creatTime}} 分类:<span>{{this.customData.getCate(this.cateId)}}</span></p>
     <article>
-        测试文本
+        {{this.customData.content}}
     </article>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import Article from '../model/ArticleClass';
+import { myMod } from '../store/HandleData';
 
 @Component({
   name: 'Articles',
 })
-export default class Articles extends Vue {}
+export default class Articles extends Vue {
+  showModalBox = true;
+
+  @Prop(Number)
+  id!: number;
+
+  @Prop(String)
+  title!: string;
+
+  @Prop(Number)
+  cateId!: number;
+
+  @Prop(String)
+  content!: string;
+
+  get showModalBoxComputed(): boolean {
+    return this.showModalBox;
+  }
+
+  set showModalBoxComputed(bol: boolean) {
+    this.showModalBox = bol;
+  }
+
+  get customData(): Article {
+    return new Article(this.id, this.cateId, this.title, this.content);
+  }
+
+  // 删除事件
+  delHandle() {
+    // this.showModalBoxComputed = !this.showModalBox;
+    // console.log(this.showModalBoxComputed);
+    myMod.isShowModalBoxSet(true);
+    myMod.currentTitleSet(this.customData.title);
+  }
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -54,6 +90,7 @@ export default class Articles extends Vue {}
     i
       margin-left: 10px;
       font-size: 16px;
+      cursor pointer
   &>p
     font-size: 14px;
   article

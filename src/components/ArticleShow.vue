@@ -1,6 +1,7 @@
 <template>
   <div class="articleShow">
-    <Articles v-for="(item, key) in test" :key="key" />
+    <Articles v-for="item in this.showData" :key="item.id"
+     v-bind="item" />
   </div>
 </template>
 
@@ -16,7 +17,11 @@ import { myMod } from '../store/HandleData';
   },
 })
 export default class ArticleShow extends Vue {
-  test: number = myMod.test;
+  atricleShowSign!: boolean;
+
+  get showData() {
+    return myMod.articleList;
+  }
 }
 </script>
 

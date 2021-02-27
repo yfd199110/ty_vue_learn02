@@ -2,6 +2,7 @@
   <div id="app">
     <TopNav />
     <ArticleShow />
+    <ModalBox />
   </div>
 </template>
 
@@ -9,15 +10,22 @@
 import { Component, Vue } from 'vue-property-decorator';
 import TopNav from './components/TopNav.vue';
 import ArticleShow from './components/ArticleShow.vue';
+import { myMod } from './store/HandleData';
+import ModalBox from './components/ModalBox.vue';
 
 @Component({
   name: 'App',
   components: {
     TopNav,
     ArticleShow,
+    ModalBox,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  mounted() {
+    myMod.initData();
+  }
+}
 </script>
 
 <style lang="stylus">
